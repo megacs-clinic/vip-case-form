@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เคส VIP - MEGA CLINIC</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Noto Sans Thai", "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%);
+    min-height: 100vh;
+    padding: 20px 12px 60px;
+  }
+  .card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #be185d, #7e22ce);
+    color: #fff;
+    padding: 24px 20px 20px;
+    text-align: center;
+  }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .header p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+  }
+  form {
+    padding: 20px 20px 8px;
+  }
+  .field {
+    margin-bottom: 16px;
+  }
+  label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+  }
+  label .req { color: #be185d; }
+  input[type="date"],
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #111827;
+    background: #fafafa;
+    font-family: inherit;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #be185d;
+    background: #fff;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #be185d, #7e22ce);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 8px 0 20px;
+  }
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  #msg {
+    display: none;
+    margin: 0 20px 20px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-align: center;
+  }
+  #msg.ok {
+    display: block;
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #a7f3d0;
+  }
+  #msg.err {
+    display: block;
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <span class="badge">MEGA CLINIC · CS</span>
+      <h1>📋 เคส VIP</h1>
+      <p>บันทึกเคสลูกค้า แจ้งเข้า Teams ทันที</p>
+    </div>
+
+    <form id="vipForm">
+      <div class="field">
+        <label>วันที่ <span class="req">*</span></label>
+        <input type="date" id="date" required>
+      </div>
+
+      <div class="field">
+        <label>ชื่อลูกค้า <span class="req">*</span></label>
+        <input type="text" id="customerName" placeholder="ชื่อ - นามสกุลลูกค้า" required>
+      </div>
+
+      <div class="field">
+        <label>HN ลูกค้า</label>
+        <input type="text" id="hn" placeholder="เช่น HN12345 (ถ้ามี)">
+      </div>
+
+      <div class="field">
+        <label>ชื่อ CS <span class="req">*</span></label>
+        <select id="csName" required>
+          <option value="" disabled selected>เลือก CS</option>
+          <option>ปูเป้</option>
+          <option>ไนซ์</option>
+          <option>มะมาย</option>
+          <option>แพรว</option>
+          <option>แคร์</option>
+          <option>แต้ว</option>
+          <option>ตุ๊ดตู่</option>
+          <option>นกยูง</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>สาขา <span class="req">*</span></label>
+        <select id="branch" required>
+          <option value="" disabled selected>เลือกสาขา</option>
+          <option>สาขาเซ็นทรัลลาดพร้าว (LP)</option>
+          <option>สาขาฟิวเจอร์พาร์ครังสิต (FR)</option>
+          <option>สาขาสยามสแควร์ (SQ)</option>
+          <option>สาขาเซ็นทรัลเวสต์เกต (WG)</option>
+          <option>สาขา BTS ศรีนครินทร์ (SR)</option>
+          <option>ไม่ระบุสาขา / ไม่ใช่ลูกค้าสาขา</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>ประเภท <span class="req">*</span></label>
+        <select id="category" required>
+          <option value="" disabled selected>เลือกประเภท</option>
+          <option>อาการทั่วไปหลังฉีด</option>
+          <option>อาการไม่ทั่วไป</option>
+          <option>ก้อน/บวม/ช้ำมากกว่าปกติ</option>
+          <option>อาการสุ่มเสี่ยง</option>
+          <option>ไม่เกี่ยวกับที่ฉีดไป</option>
+          <option>ไม่เห็นผล</option>
+          <option>คอมเพลน</option>
+          <option>คืนเงิน / เปลี่ยนแปลงคอร์ส</option>
+          <option>รูป BA</option>
+          <option>BM</option>
+          <option>MJ</option>
+          <option>การปฏิบัติตัวหลังฉีด</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>รายละเอียดเคส <span class="req">*</span></label>
+        <textarea id="detail" placeholder="อธิบายรายละเอียดเคส..." required></textarea>
+      </div>
+
+      <button type="submit" id="submitBtn">ส่งเคส</button>
+    </form>
+
+    <div id="msg"></div>
+  </div>
+
+<script>
+  // HTTP URL ของ flow "VIP Case Form -> Teams CS x AI" (บัญชี megacs@)
+  const TEAMS_WEBHOOK_URL = "https://default6e3bad2b0568436188590d6886bcd4.60.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/23/workflows/c28e9ffa793449f7a700ebae02ec9da5/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=07Ccj5Nd46xlou5yLoKoyWAHVqia6t1tHLhTxIbaWgg";
+
+  const dateInput = document.getElementById('date');
+  dateInput.valueAsDate = new Date();
+
+  const form = document.getElementById('vipForm');
+  const msg = document.getElementById('msg');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.className = '';
+    msg.removeAttribute('style');
+
+    const payload = {
+      date: document.getElementById('date').value,
+      customerName: document.getElementById('customerName').value,
+      hn: document.getElementById('hn').value.trim(),
+      csName: document.getElementById('csName').value,
+      branch: document.getElementById('branch').value,
+      category: document.getElementById('category').value,
+      detail: document.getElementById('detail').value
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'กำลังส่ง...';
+
+    try {
+      const res = await fetch(TEAMS_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      msg.textContent = '✅ ส่งเคสเรียบร้อยแล้ว';
+      msg.className = 'ok';
+      form.reset();
+      dateInput.valueAsDate = new Date();
+    } catch (err) {
+      msg.textContent = '❌ ส่งไม่สำเร็จ กรุณาลองใหม่ (' + err.message + ')';
+      msg.className = 'err';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'ส่งเคส';
+    }
+  });
+</script>
+</body>
+</html>
